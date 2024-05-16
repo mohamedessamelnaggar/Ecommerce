@@ -1,16 +1,17 @@
 import { Injectable } from "@nestjs/common";
 import {IsNotEmpty,IsEmail,IsString,MinLength} from "class-validator";
+import { UserSignInDto } from "./user-signin.dto";
 
 
 @Injectable()
-export class UserSignUpDto {
+export class UserSignUpDto extends UserSignInDto {
 
     @IsNotEmpty({message : "Not Empty"})
-    @IsString()
+    @IsString({message : "Should Be string"})
     name:string ;
 
     @IsNotEmpty({message : "Not Empty"})
-    @IsString()
+    @IsString({message : "Should Be string"})
     email : string;
 
     @IsNotEmpty({message : "Not Empty"})
