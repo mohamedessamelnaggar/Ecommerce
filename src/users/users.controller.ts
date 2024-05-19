@@ -37,13 +37,13 @@ export class UsersController {
     return this.usersService.create(createUserDto);
   }
 
-  @AuthorizeRoles(Roles.ADMIN)
-  @UseGuards(AuthenticationGuard, AuthorizeGuard)
+  @UseGuards(AuthenticationGuard, AuthorizeGuard([Roles.USER]))
   @Get('all')
   async findAll() {
     return await this.usersService.findAll();
   }
 
+  
   @Get('single/:id')
   async findOne(@Param('id') id: string):Promise<UserEntity> {
     return await this.usersService.findOne(+id);

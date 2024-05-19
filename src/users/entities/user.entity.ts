@@ -1,7 +1,8 @@
 import { Roles } from "src/utility/common/user-roles.enum";
 import { Exclude } from 'class-transformer';
 
-import {Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm"
+import {Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm"
+import { CategoryEntity } from "src/categories/entities/category.entity";
 
 @Entity('users') 
 export class UserEntity {
@@ -26,6 +27,9 @@ export class UserEntity {
 
     @UpdateDateColumn()
     UpdatedAt:Timestamp;
+
+    @OneToMany(()=>CategoryEntity , (cat)=>cat.addedBy)
+    categories:CategoryEntity[];
 
 
 }

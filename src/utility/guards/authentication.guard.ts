@@ -1,4 +1,5 @@
 import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
+import { CurrentUser } from '../decorators/current-user.decorator';
 
 @Injectable()
 export class AuthenticationGuard implements CanActivate {
