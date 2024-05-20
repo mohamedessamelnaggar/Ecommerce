@@ -3,6 +3,7 @@ import { Exclude } from 'class-transformer';
 
 import {Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm"
 import { CategoryEntity } from "src/categories/entities/category.entity";
+import { ProductEntity } from "src/products/entities/product.entity";
 
 @Entity('users') 
 export class UserEntity {
@@ -30,6 +31,9 @@ export class UserEntity {
 
     @OneToMany(()=>CategoryEntity , (cat)=>cat.addedBy)
     categories:CategoryEntity[];
+
+    @OneToMany(()=>ProductEntity , (pro)=>pro.addedBy)
+    products:ProductEntity[];
 
 
 }
