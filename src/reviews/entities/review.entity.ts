@@ -1,7 +1,9 @@
-import { Column, CreateDateColumn, Entity, Timestamp, UpdateDateColumn } from "typeorm";
+import { ProductEntity } from "src/products/entities/product.entity";
+import { UserEntity } from "src/users/entities/user.entity";
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
 
-@Entity()
-export class Review {
+@Entity({name: 'Reviews'})
+export class ReviewEntity {
 
     @PrimaryGeneratedColumn()
     id: number;
@@ -17,6 +19,13 @@ export class Review {
 
     @UpdateDateColumn()
     updatedAt:Timestamp;  
+
+    @ManyToOne(type => UserEntity, (user)=>user.reviews)
+    user:UserEntity;
+
+    @ManyToOne(type => ProductEntity, (pro)=>pro.reviews)
+    product:ProductEntity;
+
 
     
 }
